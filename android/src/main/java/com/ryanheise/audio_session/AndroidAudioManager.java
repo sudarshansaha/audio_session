@@ -270,7 +270,7 @@ public class AndroidAudioManager implements MethodCallHandler {
             }
         }
 
-        @TargetApi(23)
+        @RequiresApi(23)
         private void initAudioDeviceCallback() {
             audioDeviceCallback = new AudioDeviceCallback() {
                 @Override
@@ -351,7 +351,7 @@ public class AndroidAudioManager implements MethodCallHandler {
             audioManager.dispatchMediaKeyEvent(keyEvent);
             return null;
         }
-        @TargetApi(21)
+        @RequiresApi(21)
         public Object isVolumeFixed() {
             requireApi(21);
             return audioManager.isVolumeFixed();
@@ -374,7 +374,7 @@ public class AndroidAudioManager implements MethodCallHandler {
         public Object getStreamMaxVolume(int streamType) {
             return audioManager.getStreamMaxVolume(streamType);
         }
-        @TargetApi(28)
+        @RequiresApi(28)
         public Object getStreamMinVolume(int streamType) {
             requireApi(28);
             return audioManager.getStreamMinVolume(streamType);
@@ -382,7 +382,7 @@ public class AndroidAudioManager implements MethodCallHandler {
         public Object getStreamVolume(int streamType) {
             return audioManager.getStreamVolume(streamType);
         }
-        @TargetApi(28)
+        @RequiresApi(28)
         public Object getStreamVolumeDb(int streamType, int index, int deviceType) {
             requireApi(28);
             return audioManager.getStreamVolumeDb(streamType, index, deviceType);
@@ -395,12 +395,12 @@ public class AndroidAudioManager implements MethodCallHandler {
             audioManager.setStreamVolume(streamType, index, flags);
             return null;
         }
-        @TargetApi(23)
+        @RequiresApi(23)
         public Object isStreamMute(int streamType) {
             requireApi(23);
             return audioManager.isStreamMute(streamType);
         }
-        @TargetApi(31)
+        @RequiresApi(31)
         public List<Map<String, Object>> getAvailableCommunicationDevices() {
             requireApi(31);
             devices = audioManager.getAvailableCommunicationDevices();
@@ -410,7 +410,7 @@ public class AndroidAudioManager implements MethodCallHandler {
             }
             return result;
         }
-        @TargetApi(31)
+        @RequiresApi(31)
         public boolean setCommunicationDevice(Integer deviceId) {
             requireApi(31);
             for (AudioDeviceInfo device : devices) {
@@ -420,12 +420,12 @@ public class AndroidAudioManager implements MethodCallHandler {
             }
             return false;
         }
-        @TargetApi(31)
+        @RequiresApi(31)
         public Map<String, Object> getCommunicationDevice() {
             requireApi(31);
             return encodeAudioDevice(audioManager.getCommunicationDevice());
         }
-        @TargetApi(31)
+        @RequiresApi(31)
         public Object clearCommunicationDevice() {
             requireApi(31);
             audioManager.clearCommunicationDevice();
@@ -440,13 +440,13 @@ public class AndroidAudioManager implements MethodCallHandler {
         public Object isSpeakerphoneOn() {
             return audioManager.isSpeakerphoneOn();
         }
-        @TargetApi(29)
+        @RequiresApi(29)
         public Object setAllowedCapturePolicy(int capturePolicy) {
             requireApi(29);
             audioManager.setAllowedCapturePolicy(capturePolicy);
             return null;
         }
-        @TargetApi(29)
+        @RequiresApi(29)
         public Object getAllowedCapturePolicy() {
             requireApi(29);
             return audioManager.getAllowedCapturePolicy();
@@ -489,7 +489,7 @@ public class AndroidAudioManager implements MethodCallHandler {
         public Object isMusicActive() {
             return audioManager.isMusicActive();
         }
-        @TargetApi(21)
+        @RequiresApi(21)
         public Object generateAudioSessionId() {
             requireApi(21);
             return audioManager.generateAudioSessionId();
@@ -520,7 +520,7 @@ public class AndroidAudioManager implements MethodCallHandler {
         public Object getProperty(String arg) {
             return audioManager.getProperty(arg);
         }
-        @TargetApi(23)
+        @RequiresApi(23)
         public Object getDevices(int flags) {
             requireApi(23);
             ArrayList<Map<String, Object>> result = new ArrayList<>();
@@ -547,7 +547,7 @@ public class AndroidAudioManager implements MethodCallHandler {
             }
             return result;
         }
-        @TargetApi(28)
+        @RequiresApi(28)
         public Object getMicrophones() throws IOException {
             requireApi(28);
             ArrayList<Map<String, Object>> result = new ArrayList<>();
@@ -582,7 +582,7 @@ public class AndroidAudioManager implements MethodCallHandler {
             return result;
         }
 
-        @TargetApi(29)
+        @RequiresApi(29)
         public Object isHapticPlaybackSupported() {
             requireApi(29);
             return AudioManager.isHapticPlaybackSupported();
@@ -659,7 +659,7 @@ public class AndroidAudioManager implements MethodCallHandler {
             audioManager = null;
         }
 
-        @TargetApi(23)
+        @RequiresApi(23)
         private void disposeAudioDeviceCallback() {
             audioManager.unregisterAudioDeviceCallback((AudioDeviceCallback)audioDeviceCallback);
         }
@@ -694,7 +694,7 @@ public class AndroidAudioManager implements MethodCallHandler {
         return list;
     }
 
-    @TargetApi(28)
+    @RequiresApi(28)
     static ArrayList<Double> coordinate3fToList(MicrophoneInfo.Coordinate3F coordinate) {
         ArrayList<Double> list = new ArrayList<>();
         list.add((double)coordinate.x);
@@ -707,7 +707,7 @@ public class AndroidAudioManager implements MethodCallHandler {
         return (o == null || o instanceof Long) ? (Long)o : Long.valueOf((Integer) o);
     }
 
-    @TargetApi(23)
+    @RequiresApi(23)
     public static @NonNull List<?> encodeAudioDevices(@NonNull AudioDeviceInfo[] devices) {
         ArrayList<Map<String, Object>> result = new ArrayList<>();
         for (AudioDeviceInfo device : devices) {
@@ -716,7 +716,7 @@ public class AndroidAudioManager implements MethodCallHandler {
         return result;
     }
 
-    @TargetApi(23)
+    @RequiresApi(23)
     public static @NonNull Map<String, Object> encodeAudioDevice(@NonNull AudioDeviceInfo device) {
         String address = null;
         if (Build.VERSION.SDK_INT >= 28) {
